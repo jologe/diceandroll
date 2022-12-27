@@ -25,11 +25,19 @@
     printNext();
   };
 
-  const generateRandomLetter = () => { // TODO: use this graphically
+  const generateRandomLetter = () => {
+    // TODO: use this graphically
     const alphabet =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
     return alphabet[Math.floor(Math.random() * alphabet.length)];
+  };
+  const printStringWithIntrigue = (string: string) => {
+    for (let character of string) {
+      const interval = setInterval(); // TODO use this somewhere and amend
+      setTimeout(() => {
+
+      }, 500);
+    }
   };
 </script>
 
