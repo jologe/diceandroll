@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IntrigueString from './../utils/IntrigueString.svelte';
+  import IntrigueString from "./../utils/IntrigueString.svelte";
   let names = "";
   let result = [];
   let index = 0;
@@ -34,16 +34,20 @@
 <br />
 <textarea id="names" name="names" bind:value={names} rows="10" cols="20" />
 {#if result.length}
-  <p>Your result is</p>
+  <br />
   <button on:click={printNext}> Next name </button>
   <button on:click={printAll}> Show all </button>
+  <p>Your result is</p>
 {:else}
   <br />
   <br />
 {/if}
 {#each result as name, i (name)}
   {#if i < index}
-    <p style="font-size: 1.5rem;"><strong>{i + 1}.</strong> <IntrigueString inString={name} /></p>
+    <p style="font-size: 1.5rem;">
+      <strong>{i + 1}.</strong>
+      <IntrigueString inString={name} />
+    </p>
   {/if}
 {/each}
 <button on:click={() => random(names)}>

@@ -1,11 +1,12 @@
 <script lang="ts">
-	import Roll from './lib/components/roll/Roll.svelte';
-  import svelteLogo from './assets/svelte.svg'
-  import Dice from './lib/components/dice/Dice.svelte'
+  import Layout from "./lib/pages/Layout.svelte";
+  import Roll from "./lib/components/roll/Roll.svelte";
+  import svelteLogo from "./assets/svelte.svg";
+  import Dice from "./lib/components/dice/Dice.svelte";
 </script>
 
-<main>
-  <div>
+<!-- <main> -->
+<!-- <div>
     <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> 
       <img src="/vite.svg" class="logo" alt="Vite Logo" />
     </a>
@@ -13,26 +14,23 @@
       <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
     </a>
   </div>
-  <h1>Vite + Svelte</h1>
+  <h1>Vite + Svelte</h1> -->
 
-  <div class="card">
-    <Dice />
-  </div>
+<Layout class="layout"/>
 
-  <div class="card">
-    <Roll />
-  </div>
-
-  <p>
+<!-- <p>
     Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
   </p>
 
   <p class="read-the-docs">
     Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
+  </p> -->
 
+<!-- </main> -->
 <style>
+  .layout {
+    position: absolute;
+  }
   .logo {
     height: 6em;
     padding: 1.5em;
