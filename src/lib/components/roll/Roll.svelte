@@ -1,4 +1,5 @@
 <script lang="ts">
+	import IntrigueString from './../utils/IntrigueString.svelte';
   let names = "";
   let result = [];
   let index = 0;
@@ -24,21 +25,6 @@
     index = 0;
     printNext();
   };
-
-  const generateRandomLetter = () => {
-    // TODO: use this graphically
-    const alphabet =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    return alphabet[Math.floor(Math.random() * alphabet.length)];
-  };
-  const printStringWithIntrigue = (string: string) => {
-    for (let character of string) {
-      const interval = setInterval(); // TODO use this somewhere and amend
-      setTimeout(() => {
-
-      }, 500);
-    }
-  };
 </script>
 
 <h1>Roll</h1>
@@ -55,9 +41,9 @@
   <br />
   <br />
 {/if}
-{#each result as name, i}
+{#each result as name, i (name)}
   {#if i < index}
-    <p style="font-size: 1.5rem;">{i + 1}. <strong>{name}</strong></p>
+    <p style="font-size: 1.5rem;"><strong>{i + 1}.</strong> <IntrigueString inString={name} /></p>
   {/if}
 {/each}
 <button on:click={() => random(names)}>

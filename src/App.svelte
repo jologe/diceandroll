@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Roll from './lib/roll/Roll.svelte';
+	import Roll from './lib/components/roll/Roll.svelte';
   import svelteLogo from './assets/svelte.svg'
-  import Dice from './lib/dice/Dice.svelte'
+  import Dice from './lib/components/dice/Dice.svelte'
 </script>
 
 <main>
