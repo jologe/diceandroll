@@ -45,3 +45,20 @@ If you have state that's important to retain within a component, consider creati
 import { writable } from 'svelte/store'
 export default writable(0)
 ```
+
+## To deploy in Firebase
+
+1. Install Firebase CLI
+```
+npm install -g firebase-tools
+```
+
+2. Login with Firebase CLI
+```
+firebase login
+```
+
+3. Deploy in Firebase hosting
+```
+firebase deploy
+```
