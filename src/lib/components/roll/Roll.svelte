@@ -1,55 +1,49 @@
 <script lang="ts">
-  import IntrigueString from "./../utils/IntrigueString.svelte";
+  import RollPopup from "./RollPopup.svelte";
   let names = "";
-  let result = [];
-  let index = 0;
+  let strings = [];
+  let showModal = false;
 
-  const printNext = () => {
-    index++;
-  };
-
-  const printAll = () => {
-    index = result.length;
+  const toggleModal = () => {
+    showModal = !showModal;
   };
 
   const random = (strNames: string) => {
-    const strings = strNames.replace(/(\r\n)|\r|\n/g, "\n").split(/\n+/g);
-    for (let i = 0; i < strings.length * 10; i++) {
-      const num1 = Math.floor(Math.random() * strings.length);
-      const num2 = Math.floor(Math.random() * strings.length);
-      const temp = strings[num1];
-      strings[num1] = strings[num2];
-      strings[num2] = temp;
-    }
-    result = strings[0] ? strings : [];
-    index = 0;
-    printNext();
+    strings = strNames.trim().replace(/(\r\n)|\r|\n/g, "\n").split(/\n+/g).filter((e) => e.length);
+    if(strings.length) toggleModal();
   };
 </script>
 
-<h1>Roll</h1>
-<label for="names">
-  Add list of names to randomize (separated by line breaks)
-</label>
-<br />
-<textarea id="names" name="names" bind:value={names} rows="10" cols="20" />
-{#if result.length}
+<div>
+  <h1>Roll</h1>
+  <label for="names">
+    Add list of names to randomize (separated by line breaks)
+  </label>
   <br />
-  <button on:click={printNext}> Next name </button>
-  <button on:click={printAll}> Show all </button>
-  <p>Your result is</p>
-{:else}
+  <textarea id="names" name="names" bind:value={names} rows="10" cols="20" />
   <br />
   <br />
-{/if}
-{#each result as name, i (name)}
-  {#if i < index}
-    <p style="font-size: 1.5rem;">
-      <strong>{i + 1}.</strong>
-      <IntrigueString inString={name} />
-    </p>
-  {/if}
-{/each}
-<button on:click={() => random(names)}>
-  Randomize{result.length ? " again" : ""}
-</button>
+  <button on:click={() => random(names)}> Randomize </button>
+  <span
+    class="modal"
+    style={`display: ${showModal ? "block" : "none"}`}
+  >
+    <RollPopup bind:names={strings} on:close={toggleModal} />
+  </span>
+</div>
+
+<style>
+  /* The Modal (background) */
+  .modal {
+    /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+</style>
