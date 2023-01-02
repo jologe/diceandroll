@@ -36,34 +36,46 @@
   };
 </script>
 
-<div class="modal-content">
+<div class="modal">
   <span class="close" on:click={close}>&times;</span>
-  <h1>Roll results</h1>
-  <br />
-  <div>
-    <button on:click={printNext}> Next name </button>
-    <button on:click={printAll}> Show all </button>
+  <div class="modal-content">
+    <h1>Roll results</h1>
+    <div class="button-container">
+      <button on:click={printNext}> Next name </button>
+      <button on:click={printAll}> Show all </button>
+    </div>
+    <p>Your result is</p>
+    {#each result as name, i (name)}
+      {#if i < index}
+        <p style="font-size: 1.5rem;">
+          <strong style="font-size: 1.2rem;">{i + 1}.</strong>
+          <IntrigueString inString={name} />
+        </p>
+      {/if}
+    {/each}
+    <button on:click={() => random(names)} style="margin-block: 1rem"> Randomize again </button>
   </div>
-  <p>Your result is</p>
-  {#each result as name, i (name)}
-    {#if i < index}
-      <p style="font-size: 1.5rem;">
-        <strong style="font-size: 1.2rem;">{i + 1}.</strong>
-        <IntrigueString inString={name} />
-      </p>
-    {/if}
-  {/each}
-  <button on:click={() => random(names)}> Randomize again </button>
 </div>
 
 <style>
+  p {
+    margin: 0.5rem;
+  }
   /* Modal Content/Box */
-  .modal-content {
+  .modal {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+  }
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .button-container {
+    flex-direction: row;
   }
 
   /* The Close Button */
